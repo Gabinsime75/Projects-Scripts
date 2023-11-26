@@ -51,11 +51,13 @@ $ cd .ssh
     $ exit
 ## Add Adoptium repository
     $ sudo bash
-    $ wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc
-    $ echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list
+    $ wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | sudo apt-key add -
+    $ echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | sudo tee /etc/apt/sources.list.d/adoptium.list
  ## Install Java 17
     $ apt update
-    $ apt install temurin-17-jdk
+    $ sudo apt install temurin-8-jdk
+    $ sudo apt install temurin-17-jdk
+
     $ update-alternatives --config java
     $ /usr/bin/java --version
     $ exit 
